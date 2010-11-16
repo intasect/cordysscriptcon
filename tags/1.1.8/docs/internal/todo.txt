@@ -1,0 +1,23 @@
+Need to add test cases for these issues:
+
+	High prio:
+	* SOAP response element name is now read from the WSDL (if available).
+	* Added new method: Cordys.getResponseMessage().removeChildElementNamespaces
+	- (Routescript) Response method name lookup sometimes failed when script routed the request to another organization.
+	* If a SOAP response received from an external web service does not contain a SOAP method in the SOAP body, the connector does not return a SOAP method either.
+	* ScriptSoapMessages does not add the SOAP namespace declarations anymore to the top level nodes (header and body).
+	
+	Medium prio:
+	- Script configuration file is now checked for modification before each script execution and the scripts are reloaded if the file has been changed.
+	- A custom property file can be specified in the connector configuration page. 
+	- Added a new method throwing a SOAP faults: throwSoapFault(String, String, String, String)
+	- Added support for saving ScriptConnector SOAP transactions 
+	* Cordys.setResponseMethodName()
+	* Cordys.setResponseMethodNamespace()
+	- Added script pre-processor class. This can be configured per-method (* supported) in the configuration file. 
+
+	Low prio:
+	- Relative script locations in the configuration file now are relative to the connector installation folder.
+	- The javascript files in the config.properties file are now relative to the directory of the config.properties file.
+	- Configuration file specified in the configuration page can be now relative in which case it is relative to the connector installation folder.
+  
