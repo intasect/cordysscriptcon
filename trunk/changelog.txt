@@ -1,0 +1,26 @@
+version 1.1.8 (released 2010-11-16)
+-migration: Migrating the connector to opensource model.
+
+version 1.1.7 (released 2009-08-18)
+-fix: Fixed a StackOverflowError with recursive WSDL imports.
+
+version 1.1.6 (released 2009-05-15)
+-fix: Fixed the configuration page for BOP-4
+
+version 1.1.5 (released 2009-03-20)
+-add: Added additional arguments to scheduleSoapRequest to only save request or response
+
+version 1.1.4 (released 2009-03-03)
+
+version 1.1.3 (released 2008-12-15)
+-add: SOAP request timeout parameter added to the configuration page.
+
+version 1.1.2 (released 2008-10-15)
+-change: TransactionId parameter for GetSavedSoapTransactions method now supports wild-cards: mytxn* or my?xn*
+-fix: SOAP:Fault was not passed correctly through from an external web service.
+-fix: When saving SOAP transactions to file, the element namespace is written too (e.g. the XML is now valid for SOAP:Faults too).
+
+version 1.1.1 (released 2008-08-29)
+-update: First release of the 1.1 branch. This release works with C3 and up. Changes include: Mozilla Rhino Javascript engine updated version 1.7R1, which includes a better support for E4X extension. Some of the old script which rely on non-standard functionality (e.g. StubTestResponse.child(0)) might not work and have to be upgraded.
+-add: Initial support for Java6 scripting API. The script engine and interface jars must be added to the classpath manually.
+
