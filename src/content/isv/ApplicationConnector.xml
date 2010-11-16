@@ -1,0 +1,5 @@
+<applicationconnectors>
+    <applicationconnector file="${src.content.appcon}/com.cordys.coe.ac.scriptconnector.ScriptConnector"
+                          key="/Cordys/WCP/Application Connector/com.cordys.coe.ac.scriptconnector.ScriptConnector"
+                          name="com.cordys.coe.ac.scriptconnector.ScriptConnector"/>
+</applicationconnectors>
