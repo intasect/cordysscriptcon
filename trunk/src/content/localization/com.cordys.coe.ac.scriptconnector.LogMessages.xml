@@ -1,0 +1,25 @@
+
+<MessageBundle id="com.cordys.coe.ac.scriptconnector.LogMessages">
+    <Message id="UnableToOpenConnector">
+        <MessageText><![CDATA[Unable to open the connector object.]]></MessageText>
+        <Description/>
+        <Annotations>
+            <DocumenationURL/>
+        </Annotations>
+    </Message>
+    <Message id="TransactionFailed">
+        <MessageText><![CDATA[ScriptConnector transaction failed: {0}]]></MessageText>
+        <Description/>
+        <Annotations>
+            <DocumenationURL/>
+        </Annotations>
+    </Message>
+    <Message id="CONNECTOR_INITIALIZATION_FAILED">
+        <MessageText><![CDATA[Connector initialization failed.]]></MessageText>
+        <Description>
+        </Description>
+        <Annotations>
+            <DocumenationURL/>
+        </Annotations>
+    </Message>
+</MessageBundle>

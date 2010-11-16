@@ -1,0 +1,10 @@
+<filesystem xmlns="">
+    <file source="${build.jar}/${project.jar.name}.jar" destdir="${project.deploy}" ecxdir="cordys_install_dir"/>
+	<file source="${sdk.lib.dir}/coelib.jar" destdir="${project.deploy}" ecxdir="cordys_install_dir" unless="skip.java"/> 
+	<file source="lib/js.jar" destdir="${project.deploy}/lib" ecxdir="cordys_install_dir"/>
+	<file source="lib/wsdl4j.jar" destdir="${project.deploy}/lib" ecxdir="cordys_install_dir"/>
+  	<file source="${build.web}" destdir="\Web${project.deploy}" ecxdir="cordys_install_dir"/>
+	<file source="src/config/config.properties" destdir="${project.deploy}" ecxdir="cordys_install_dir"/>
+	<file source="src/samples" destdir="${project.deploy}/samples" ecxdir="cordys_install_dir"/>
+</filesystem>
+

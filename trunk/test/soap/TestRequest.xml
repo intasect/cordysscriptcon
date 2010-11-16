@@ -1,0 +1,10 @@
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP:Body>
+    <ExecuteScript xmlns="http://schemas.cordys.com/1.0/coe/ScriptConnector">
+      <ScriptId>c:\temp\script-conn.js</ScriptId>
+		<ScriptInput>
+			<dir>c:\temp</dir>
+		</ScriptInput>
+    </ExecuteScript>
+  </SOAP:Body>
+</SOAP:Envelope>
