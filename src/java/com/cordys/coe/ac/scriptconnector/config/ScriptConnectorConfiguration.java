@@ -25,6 +25,7 @@ import com.cordys.coe.ac.scriptconnector.scripting.ConfiguredScript;
 import com.cordys.coe.exception.GeneralException;
 import com.cordys.coe.util.FileUtils;
 import com.cordys.coe.util.XMLProperties;
+import com.cordys.coe.util.xml.nom.XPathHelper;
 
 import com.eibus.util.logger.CordysLogger;
 
@@ -163,14 +164,15 @@ public class ScriptConnectorConfiguration
             throw new ScriptConnectorException("Configuration not found");
         }
 
-        if (!Node.getName(iConfigNode).equals("configuration"))
+        if (!Node.getLocalName(iConfigNode).equals("configuration"))
         {
             throw new ScriptConnectorException("Root-tag of the configuration should be <configuration>");
         }
 
+        int scriptConnectorConfigurationNode = XPathHelper.selectSingleNode(iConfigNode, "Configuration");
         try
         {
-            xpBase = new XMLProperties(iConfigNode);
+            xpBase = new XMLProperties(scriptConnectorConfigurationNode);
         }
         catch (GeneralException e)
         {
