@@ -14,6 +14,12 @@
     <body>
         <release description="Development release" version="@NEXT@">
 				</release>
+			
+			<release date="2011-02-07" description="Development release" version="1.1.9">
+				<action dev="hervandevliert" type="fix">Scriptconnector does not start</action>
+				<action dev="hervandevliert" type="add">Support for scripts with extension '.script' and '.javascript'</action>
+			</release>
+		
 			<release date="2010-11-16" description="Migration release" version="1.1.8">
 <action dev="srkrishnan" type="migration">Migrating the connector to opensource model.</action>
 </release>

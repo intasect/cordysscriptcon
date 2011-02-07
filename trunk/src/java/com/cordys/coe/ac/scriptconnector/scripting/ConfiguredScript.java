@@ -88,7 +88,7 @@ public abstract class ConfiguredScript
 
         ConfiguredScript script;
 
-        if (ext.equals("js"))
+        if (ext.equals("js") || ext.equals("script") || ext.equals("javascript"))
         {
             script = new E4XScript();
         }
