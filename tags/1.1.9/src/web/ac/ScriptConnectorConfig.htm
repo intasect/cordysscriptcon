@@ -1,0 +1,154 @@
+<!--
+	© 2003 Cordys R&D B.V. All rights reserved.
+	The computer program(s) is the proprietary information of Cordys R&D B.V.
+	and provided under the relevant License Agreement containing restrictions
+	on use and disclosure. Use is subject to the License Agreement.
+-->
+<html xmlns:eibus="xmlns:eibus" onapplicationready="initialize()">
+    <head>
+        <title>ScriptConnector Configuration</title>
+		<script src="/cordys/wcp/application.js" >
+		</script>
+		<style>
+			input{font-size:11; font-family:verdana;}
+			label{font-size:11; font-family:verdana;}    
+		</style>		
+    </head>
+    <script	src="/cordys/wcp/admin/behavior/applicationconnector.js"></script>
+    <script language="JScript">
+        /**
+         * This method creates the needed configuration for the connector
+         *
+         * @param xmlConfig The configuration-XML.
+		 *
+		 * @return true if the checks were successfull and the configuration is finished.
+		 *         false if the user still has to fill the mandatory fields.
+         */
+        function createConnectorConfiguration(xmlConfig)
+        {
+            var bReturn = true;
+            var xmlDoc = xmlConfig.ownerDocument;
+            var nConfig = xmlDoc.createElement("Configuration");
+
+			nNode = xmlDoc.createElement("configFile");
+			nNode.text = txtConfigFile.value;
+			nConfig.appendChild(nNode);
+
+			nNode = xmlDoc.createElement("customPropertyFile");
+			nNode.text = txtCustomPropFile.value;
+			nConfig.appendChild(nNode);
+
+			nNode = xmlDoc.createElement("txnSaveFolder");
+			nNode.text = txtTxnSaveFolder.value;
+			nConfig.appendChild(nNode);
+
+			nNode = xmlDoc.createElement("maxFiles");
+			nNode.text = txtMaxFiles.value;
+			nConfig.appendChild(nNode);
+			
+			nNode = xmlDoc.createElement("soapRequestTimeout");
+			nNode.text = txtSoapRequestTimeout.value;
+			nConfig.appendChild(nNode);
+
+            xmlConfig.appendChild(nConfig);
+
+            return bReturn;
+        }//createConnectorConfiguration
+
+        /**
+         * This method fills the inputfields based on the XML.
+         *
+         * @param xmlConfig The configuration-XML.
+         */
+        function fillInPropertyScreen(xmlConfig)
+        {
+            nNode = xmlConfig.selectSingleNode("//configFile");
+            if (nNode != null)
+            {
+                txtConfigFile.value = nNode.text;
+            }
+
+            nNode = xmlConfig.selectSingleNode("//customPropertyFile");
+            if (nNode != null)
+            {
+                txtCustomPropFile.value = nNode.text;
+            }
+
+            nNode = xmlConfig.selectSingleNode("//txnSaveFolder");
+            if (nNode != null)
+            {
+                txtTxnSaveFolder.value = nNode.text;
+            }
+
+            nNode = xmlConfig.selectSingleNode("//maxFiles");
+            if (nNode != null)
+            {
+                txtMaxFiles.value = nNode.text;
+            }
+            
+            nNode = xmlConfig.selectSingleNode("//soapRequestTimeout");
+            if (nNode != null)
+            {
+            	txtSoapRequestTimeout.value = nNode.text;
+            }
+        }
+    </script>
+    <body>
+        <table width="100%" style="border: 1px solid black;" cellspacing="0" cellpadding="5">
+            <tr class="medium">
+                <td colspan="2" align="center">
+                    <STRONG>ScriptConnector Configuration</STRONG>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    Configuration File:
+                </td>
+                <td  align="left">
+                    <input type="text" style="width:300px" id="txtConfigFile" class="input"  value="coe/scriptconnector/config.properties"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    Custom Property File:
+                </td>
+                <td  align="left">
+                    <input type="text" style="width:300px" id="txtCustomPropFile" class="input"  value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    SOAP message save folder:
+                </td>
+                <td  align="left">
+                    <input type="text" style="width:300px" id="txtTxnSaveFolder" class="input"  value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    Maximum number of files per transaction:
+                </td>
+                <td  align="left">
+                    <input type="text" style="width:50px" id="txtMaxFiles" class="input"  value="500"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                </td>
+                <td  align="left">
+                    <p>
+                    	Relative paths are relative to <i>cordys_install_dir</i>.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    SOAP request timeout:
+                </td>
+                <td  align="left">
+                    <input type="text" style="width:50px" id="txtSoapRequestTimeout" class="input"  value="30"/> seconds.
+                </td>
+            </tr>
+		</table>
+    </body>
+</html>
