@@ -427,9 +427,7 @@ public class BridgeObject
     public void setResponse(String response)
                      throws ScriptConnectorException
     {
-        // Wrap the XML inside a dummy root, as the this method will add only
-        // the children of the passed element.
-        soapResponse.setMethodAsString("<root>" + response + "</root>", true);
+        soapResponse.setMethodAsString(response, true);
         responseAdded = true;
     }
 

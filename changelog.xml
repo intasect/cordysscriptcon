@@ -15,6 +15,10 @@
         <release description="Development release" version="@NEXT@">
 				</release>
 			
+			<release date="2011-02-16" description="Development release" version="1.1.10">
+				<action dev="srkrishnan" type="fix">Applied a patch from Her van de Vliert which fixes Double response tag of SearchLDAPResponse.</action>
+		    </release>
+			
 			<release date="2011-02-07" description="Development release" version="1.1.9">
 				<action dev="hervandevliert" type="fix">Scriptconnector does not start</action>
 				<action dev="hervandevliert" type="add">Support for scripts with extension '.script' and '.javascript'</action>
