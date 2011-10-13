@@ -1,10 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--
-	© 2003 Cordys R&D B.V. All rights reserved.
+	Â© 2003 Cordys R&D B.V. All rights reserved.
 	The computer program(s) is the proprietary information of Cordys R&D B.V.
 	and provided under the relevant License Agreement containing restrictions
 	on use and disclosure. Use is subject to the License Agreement.
 -->
-<html xmlns:eibus="xmlns:eibus" onapplicationready="initialize()">
+<html xmlns:eibus="http://schemas.cordys.com/eibus" onapplicationready="initGlobals();initialize()" >
     <head>
         <title>ScriptConnector Configuration</title>
 		<script src="/cordys/wcp/application.js" >
@@ -13,9 +14,22 @@
 			input{font-size:11; font-family:verdana;}
 			label{font-size:11; font-family:verdana;}    
 		</style>		
-    </head>
+
     <script	src="/cordys/wcp/admin/behavior/applicationconnector.js"></script>
     <script language="JScript">
+    	/**
+         * Initialize global varibales.
+         */
+    	function initGlobals()
+    	{
+			VARS = { "CONFIG_FILE" : document.getElementById("txtConfigFile"),
+					"CUSTOMPROP_FILE" : document.getElementById("txtCustomPropFile"),
+					"SAVE_FOLDER" : document.getElementById("txtTxnSaveFolder"),
+					"MAX_FILES" : document.getElementById("txtMaxFiles"),
+					"SOAP_REQUEST_TIMEOUT" : document.getElementById("txtSoapRequestTimeout")
+			};
+    	}
+	
         /**
          * This method creates the needed configuration for the connector
          *
@@ -30,24 +44,24 @@
             var xmlDoc = xmlConfig.ownerDocument;
             var nConfig = xmlDoc.createElement("Configuration");
 
-			nNode = xmlDoc.createElement("configFile");
-			nNode.text = txtConfigFile.value;
+			var nNode = xmlDoc.createElement("configFile");
+			cordys.setTextContent(nNode, VARS.CONFIG_FILE.value);
 			nConfig.appendChild(nNode);
 
-			nNode = xmlDoc.createElement("customPropertyFile");
-			nNode.text = txtCustomPropFile.value;
+			var nNode = xmlDoc.createElement("customPropertyFile");
+			cordys.setTextContent(nNode, VARS.CUSTOMPROP_FILE.value);
 			nConfig.appendChild(nNode);
 
-			nNode = xmlDoc.createElement("txnSaveFolder");
-			nNode.text = txtTxnSaveFolder.value;
+			var nNode = xmlDoc.createElement("txnSaveFolder");
+			cordys.setTextContent(nNode, VARS.SAVE_FOLDER.value);
 			nConfig.appendChild(nNode);
 
-			nNode = xmlDoc.createElement("maxFiles");
-			nNode.text = txtMaxFiles.value;
+			var nNode = xmlDoc.createElement("maxFiles");
+			cordys.setTextContent(nNode, VARS.MAX_FILES.value);
 			nConfig.appendChild(nNode);
 			
-			nNode = xmlDoc.createElement("soapRequestTimeout");
-			nNode.text = txtSoapRequestTimeout.value;
+			var nNode = xmlDoc.createElement("soapRequestTimeout");
+			cordys.setTextContent(nNode, VARS.SOAP_REQUEST_TIMEOUT.value);
 			nConfig.appendChild(nNode);
 
             xmlConfig.appendChild(nConfig);
@@ -62,37 +76,56 @@
          */
         function fillInPropertyScreen(xmlConfig)
         {
-            nNode = xmlConfig.selectSingleNode("//configFile");
+			var nNode = cordys.selectXMLNode(xmlConfig, "//configFile");
             if (nNode != null)
             {
-                txtConfigFile.value = nNode.text;
+            	VARS.CONFIG_FILE.value = cordys.getTextContent(nNode);
             }
 
-            nNode = xmlConfig.selectSingleNode("//customPropertyFile");
+            var nNode = cordys.selectXMLNode(xmlConfig, "//customPropertyFile");
             if (nNode != null)
             {
-                txtCustomPropFile.value = nNode.text;
+            	VARS.CUSTOMPROP_FILE.value = cordys.getTextContent(nNode);
             }
 
-            nNode = xmlConfig.selectSingleNode("//txnSaveFolder");
+            var nNode = cordys.selectXMLNode(xmlConfig, "//txnSaveFolder");
             if (nNode != null)
             {
-                txtTxnSaveFolder.value = nNode.text;
+            	VARS.SAVE_FOLDER.value = cordys.getTextContent(nNode);
             }
 
-            nNode = xmlConfig.selectSingleNode("//maxFiles");
+            var nNode = cordys.selectXMLNode(xmlConfig, "//maxFiles");
             if (nNode != null)
             {
-                txtMaxFiles.value = nNode.text;
+            	VARS.MAX_FILES.value = cordys.getTextContent(nNode);
             }
             
-            nNode = xmlConfig.selectSingleNode("//soapRequestTimeout");
+            var nNode = cordys.selectXMLNode(xmlConfig, "//soapRequestTimeout");
             if (nNode != null)
             {
-            	txtSoapRequestTimeout.value = nNode.text;
+            	VARS.SOAP_REQUEST_TIMEOUT.value = cordys.getTextContent(nNode);
             }
+            
+			cordys.addDOMListener(VARS.CONFIG_FILE, "onchange", raiseConfigurationChanges);
+			cordys.addDOMListener(VARS.CUSTOMPROP_FILE, "onchange", raiseConfigurationChanges);
+			cordys.addDOMListener(VARS.SAVE_FOLDER, "onchange", raiseConfigurationChanges);
+			cordys.addDOMListener(VARS.MAX_FILES, "onchange", raiseConfigurationChanges);
+			cordys.addDOMListener(VARS.SOAP_REQUEST_TIMEOUT, "onchange", raiseConfigurationChanges);
+        }
+		     
+        /**
+         * This event is raised when a property is changed and will inform
+         * the parent UI that an update is needed.
+         */
+		function raiseConfigurationChanges()
+        {
+            if (!application.container.isWizardContainer)
+			{
+                system.windows.servicepropertiesPage_SystemResourceManager.configurationChanged();
+			}
         }
     </script>
+	</head>
     <body>
         <table width="100%" style="border: 1px solid black;" cellspacing="0" cellpadding="5">
             <tr class="medium">
