@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2004 Cordys R&amp;D B.V. 
+ 
+  This file is part of the Cordys Script Connector. 
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsdLocal1="http://www.siebel.com/xml/Account%20Interface"
+	targetNamespace="http://siebel.com/asi/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://siebel.com/asi/">
+	<types>
+		<xsd:schema elementFormDefault="qualified"
+			attributeFormDefault="unqualified"
+			targetNamespace="http://siebel.com/asi/"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://www.siebel.com/xml/Account%20Interface">
+			</xsd:import>
+			<xsd:element name="SiebelAccountInsert_Input">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Test" type="xsd:string" />
+						<xsd:element name="StatusObject" minOccurs="0" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SiebelAccountInsert_Output">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Test" type="xsd:string" />
+						<xsd:element name="StatusObject" minOccurs="0" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+		</xsd:schema>
+	</types>
+	<message name="SiebelAccountInsert_Input">
+		<part name="SiebelAccountInsert_Input"
+			element="tns:SiebelAccountInsert_Input">
+		</part>
+	</message>
+	<message name="SiebelAccountInsert_Output">
+		<part name="SiebelAccountInsert_Output"
+			element="tns:SiebelAccountInsert_Output">
+		</part>
+	</message>
+	<portType name="Default">
+		<operation name="SiebelAccountInsert">
+			<input message="tns:SiebelAccountInsert_Input"></input>
+			<output message="tns:SiebelAccountInsert_Output"></output>
+		</operation>
+	</portType>
+	<binding name="Default" type="tns:Default">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document">
+		</soap:binding>
+		<operation name="SiebelAccountInsert">
+			<soap:operation
+				soapAction="document/http://siebel.com/asi/:SiebelAccountInsert">
+			</soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+		</operation>	
+	</binding>
+	<service name="Siebel_spcAccount">
+		<port binding="tns:Default" name="Default">
+			<soap:address location="http://testserver">
+			</soap:address>
+		</port>
+	</service>
+</definitions>

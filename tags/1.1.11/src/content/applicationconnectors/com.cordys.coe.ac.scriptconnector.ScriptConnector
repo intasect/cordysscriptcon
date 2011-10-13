@@ -1,0 +1,28 @@
+
+<applicationconnector>
+	<step>
+		<url>/cordys/coe/scriptconnector/ac/ScriptConnectorConfig.htm</url>
+		<description>Script Connector</description>
+		<caption>Script Connector</caption>
+        <isv>Cordys CoE</isv>
+        <product>CoE Custom Connectors</product>		
+		<image>/cordys/wcp/images/admin/configurationconnector.png</image>
+		<implementation>com.cordys.coe.ac.scriptconnector.ScriptConnector</implementation>
+		<sharejvm>true</sharejvm>
+		<spycategory>
+			<category>SCRIPTCONNECTOR</category>
+		</spycategory>
+		
+        <loggercategory>
+            <categorygroup displayname="ScriptConnector">
+                <category>com.cordys.coe.ac.scriptconnector</category>
+            </categorygroup>
+        </loggercategory>
+        <classpath>
+            <location>coe/scriptconnector/scriptconnector.jar</location>
+            <location>coe/scriptconnector/coelib.jar</location>
+            <location>coe/scriptconnector/lib/js.jar</location>
+            <location>coe/scriptconnector/lib/wsdl4j.jar</location>
+        </classpath>		
+	</step>
+</applicationconnector>
