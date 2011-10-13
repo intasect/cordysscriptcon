@@ -14,10 +14,11 @@
     <body>
         <release description="Development release" version="@NEXT@">
 				</release>
-			<release date="2011-10-13" description="Development release" version="1.1.11">
+<release date="2011-10-13" description="Development release" version="1.1.11">
 				<action dev="hvdvlier" type="fix">Crossbrowser fixes</action>
 				<action dev="hvdvlier" type="fix">Fix for BOP41</action>
-		    </release>
+		</release>
+			
 		    			
 			<release date="2011-02-16" description="Development release" version="1.1.10">
 				<action dev="srkrishnan" type="fix">Applied a patch from Her van de Vliert which fixes Double response tag of SearchLDAPResponse.</action>
